@@ -33,9 +33,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>i am a react person</p>
+           <Comment></Comment>
         <Count></Count>
         <Countnumber></Countnumber>
         <Users></Users>
+     
 
    
         {/* <Product name ={products[0].name} price = {products[0].price}></Product>
@@ -70,6 +72,26 @@ function App() {
       </header>
     </div>
   );
+}
+
+function Comment() {
+  const [user,setuser] =useState([])
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/comments')
+    .then(res =>res.json())
+    .then(data=>setuser(data))
+  })
+  return(
+   <div>
+     <h5> Comment of the people  :{user.length}</h5>
+     <ul>
+       {
+         user.map(user=><li>{user.email}</li>)
+       }
+     </ul>
+   </div>
+  )
+  
 }
 
 function Users() {
